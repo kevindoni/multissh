@@ -21,7 +21,7 @@ MIP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
 }
 update(){
-echo -e "\e[1;37m ACTUALIZANDO SISTEMA...."
+echo -e "\e[1;37m SISTEM PEMBARUAN...."
 apt-get update -y &>/dev/null
 apt-get upgrade -y &>/dev/null
 #apt-get install figlet -y &>/dev/null
@@ -59,7 +59,7 @@ system=$(echo $(cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed '
 echo $system|awk '{print $1, $2}'
 }
 scriptmx(){
-echo -e "\e[1;33m SCRIPT VPS-MX\n             SELECIONADO"
+echo -e "\e[1;33m SCRIPT VPS-MX\n             TERPILIH"
 rm -rf multiscript.sh
 rm -rf .bash_history
 sleep 3
@@ -75,7 +75,7 @@ rm -rf multiscript.sh instalador
 rm -rf .bash_history
 }
 dankel(){
-echo -e "\e[1;33m SCRIPT dankelthaher\n             SELECIONADO"
+echo -e "\e[1;33m SCRIPT dankelthaher\n             TERPILIH"
 rm -rf multiscript.sh
 rm -rf .bash_history
 sleep 3
@@ -85,7 +85,7 @@ rm -rf .bash_history
 }
 
 sshplus(){
-echo -e "\e[1;33m SCRIPT SSHPLUS\n             SELECIONADO"
+echo -e "\e[1;33m SCRIPT SSHPLUS\n             TERPILIH"
 rm -rf .bash_history
 rm -rf multiscript.sh
 sleep 3
@@ -94,7 +94,7 @@ rm -rf multiscript.sh
 rm -rf Plus
 }
 reaper(){
-echo -e "\e[1;33m SCRIPT MOD ADM-MX -SIXREAPER\n             SELECIONADO"
+echo -e "\e[1;33m SCRIPT MOD ADM-MX -SIXREAPER\n             TERPILIH"
 sleep 3
 rm -rf .bash_history multiscript.sh
 wget https://raw.githubusercontent.com/casitadelterror/scripts/master/gamo/instalador && chmod +x instalador && ./instalador
@@ -106,7 +106,7 @@ kaliofc(){
 fun_ip
 clear
 msg -bar
-msg -verm " ESPERE UN MOMENTO"
+msg -verm " TUNGGU SEBENTAR"
 msg -bar
 dpkg --configure -a &>/dev/null
 apt-get install software-properties-common -y &>/dev/null
@@ -141,28 +141,28 @@ inst_components () {
 funcao_idioma () {
 msg -bar2
 figlet "    -VPS MX-" | lolcat 
-echo -e "     ESTE SCRIPT ESTA OPTIMIZADO A IDIOMA ESPAÑOL"
+echo -e "     SKRIP INI DIOPTIMALKAN UNTUK BAHASA SPANYOL"
 msg -bar2
 pv="$(echo es)"
 [[ ${#id} -gt 2 ]] && id="es" || id="$pv"
 byinst="true"
 }
 install_fim () {
-msg -ama "               Finalizando Instalacion" && msg bar2
+msg -ama "               Menyelesaikan Instalasi" && msg bar2
 [[ $(find /etc/newadm/ger-user -name nombre.log|grep -w "nombre.log"|head -1) ]] || wget -O /etc/newadm/ger-user/nombre.log https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/ArchivosUtilitarios/nombre.log &>/dev/null
 [[ $(find /etc/newadm/ger-user -name IDT.log|grep -w "IDT.log"|head -1) ]] || wget -O /etc/newadm/ger-user/IDT.log https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/ArchivosUtilitarios/IDT.log &>/dev/null
 [[ $(find /etc/newadm/ger-user -name tiemlim.log|grep -w "tiemlim.log"|head -1) ]] || wget -O /etc/newadm/ger-user/tiemlim.log https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/ArchivosUtilitarios/tiemlim.log &>/dev/null
 msg -bar
-echo -e " CAMBIO DE RESELLER (recomendado)"
+echo -e " PERUBAHAN RESELLER (disarankan)"
 msg -bar
-read -p " SU NUEVO RESELLER SERÁ? : " mensaje
+read -p " APAKAH ANDA AKAN MEMBUAT RESELLER BARU? : " mensaje
 echo "$mensaje" > ${SCPdir}/message.txt
 sleep 3.s
-echo -e " MENSAJE CAMBIADO CON ÉXITO"
+echo -e " PESAN BERHASIL BERUBAH"
 msg -bar
-echo -e " SU NUEVO RESELLER ES:\e[33m $(cat ${SCPdir}/message.txt)"
+echo -e " RESELLER BARU ANDA ADALAH:\e[33m $(cat ${SCPdir}/message.txt)"
 msg bar
-read -p "enter para finalizar"
+read -p "ENTER untuk menylanjutkan"
 msg -bar
 sleep 4.s
 wget -O /bin/rebootnb https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/ArchivosUtilitarios/rebootnb &> /dev/null
@@ -192,10 +192,10 @@ echo 'mess1="$(less /etc/newadm/message.txt)" ' >> .bashrc
 echo 'echo "" '>> .bashrc
 echo 'echo -e "\033[92m        RESELLER : $mess1 "'>> .bashrc
 echo 'echo "" '>> .bashrc                                               
-echo 'echo -e "\033[97m   PARA MOSTAR PANEL BASH ESCRIBA:  sudo menu "'>> .bashrc
+echo 'echo -e "\033[97m   PREMIUM SCRIP SILAHKAN KETIK:  sudo menu "'>> .bashrc
 #echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/Vercion &>/dev/null'>> .bashrc
 echo 'echo ""'>> .bashrc
-echo -e "         COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+echo -e "         PERINTAH UTAMA MASUK PANEL "
 echo -e "\033[1;41m                     sudo menu                        \033[0;37m" && msg -bar2
 sleep 5
 }
@@ -225,7 +225,7 @@ mv -f ${SCPinstal}/$1 ${ARQ}/$1
 chmod +x ${ARQ}/$1
 }
 
-echo -e "        INSTALANDO PAQUETES........"
+echo -e "        MEMASANG PAKET........"
 apt-get install lsof >/dev/null 2>&1
 apt-get install sudo >/dev/null 2>&1
 apt-get install cowsay -y >/dev/null 2>&1
@@ -252,17 +252,17 @@ NOTIFY () {
 msg -bar
 msg -ama " Notify-BOT (Notificasion Remota)| VPS-MX  "
 msg -bar
-echo -e "\033[1;94m Es una opcion para notificar cuando\n un usuario sea bloquedo o este expirado, e info de VPS."
-echo -e "\033[1;97m Deve usar el BOT de Telegram @Noti_VPSMX_Bot"
-echo -e "\033[1;92m Para sacar su ID solo Meta el comando /MENU en el BOT @USA1_BOT"
-echo -e "\033[1;92m Aparesera un pequeño menu donde aparesera su  👤 ID"
+echo -e "\033[1;94m Ini adalah opsi untuk memberi tahu kapan\n pengguna diblokir atau kedaluwarsa, dan info VPS."
+echo -e "\033[1;97m Anda harus menggunakan Telegram BOT @Noti_VPSMX_Bot"
+echo -e "\033[1;92m Untuk mendapatkan ID Anda cukup Masukkan perintah /MENU di BOT @SSH_Embexbot"
+echo -e "\033[1;92m Menu kecil akan muncul di tempat Anda  👤 ID"
 msg -bar
-echo -e "\033[1;97mIgrese un nombre para el VPS:\033[0;37m"; read -p " " nombr
+echo -e "\033[1;97mMasukkan nama untuk VPS:\033[0;37m"; read -p " " nombr
 echo "${nombr}" > /etc/newadm/ger-user/nombre.log
-echo -e "\033[1;97mIgrese su ID 👤:\033[0;37m"; read -p " " idbot
+echo -e "\033[1;97mID 👤:\033[0;37m"; read -p " " idbot
 echo "${idbot}" > /etc/newadm/ger-user/IDT.log 
 msg -bar
-echo -e "\033[1;32m         ID AGREGADO CON EXITO"
+echo -e "\033[1;32m         ID DITAMBAHKAN DENGAN SUKSES"
 msg -bar
 NOM="$(less /etc/newadm/ger-user/nombre.log)"
 NOM1="$(echo $NOM)"
@@ -271,12 +271,12 @@ IDB2=`echo $IDB1` > /dev/null 2>&1
 
 KEY="862633455:AAGJ9BBJanzV6yYwLSemNAZAVwn7EyjrtcY"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
-MSG="⚠️ AVISO DE VPS: $NOM1 ⚠️
-👉 MENSAJE DE PRUEBA
-🔰 EXITOSO... SALUDOS"
+MSG="⚠️ PEMBERITAHUAN VPS: $NOM1 ⚠️
+👉 PESAN UJI
+🔰 SUKSES ... SELAMAT"
 curl -s --max-time 10 -d "chat_id=$IDB2&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
 
-echo -e "\033[1;34mSE ENVIO MENSAJE DE PRUEBA SI NO LLEGA CONTACTE A @? "
+echo -e "\033[1;34mPESAN UJI TELAH DIKIRIM JIKA TIDAK ADA RESPON, HUBUNGI @? "
 }
 pontos="*"
 _repomx=("ADMbot.sh" "C-SSR.sh" "Crear-Demo.sh" "PDirect.py" "PGet.py" "POpen.py" "PPriv.py" "PPub.py" "Shadowsocks-R.sh" "Shadowsocks-libev.sh" "Unlock-Pass-VULTR.sh" "apacheon.sh" "blockBT.sh" "budp.sh" "dns-netflix.sh" "dropbear.sh" "fai2ban.sh" "gestor.sh" "menu" "message.txt" "openvpn.sh" "paysnd.sh" "ports.sh" "shadowsocks.sh" "sockspy.sh" "speed.sh" "speedtest.py" "squid.sh" "squidpass.sh" "ssl.sh" "tcp.sh" "ultrahost" "usercodes" "utils.sh" "v2ray.sh")
@@ -299,8 +299,8 @@ Key="ScriptFree-Casita-Kalix1-Oficial/12345*456*"
    echo "$Key" > ${SCPdir}/key.txt
    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}   
    [[ ${#id} -gt 2 ]] && echo "es" > ${SCPidioma} || echo "${id}" > ${SCPidioma}
-   echo -e "${cor[2]}         DESEAS INSTALAR NOTI-BOT?(Default n)"
-   echo -e "\033[1;34m  (Deves tener Telegram y el BOT: @Noti_VPSMX_Bot)"
+   echo -e "${cor[2]}         APAKAH ANDA INGIN MENGINSTAL NOTIFIKASI-BOT?(Default n)"
+   echo -e "\033[1;34m  (Anda harus memiliki Telegram dan BOT: @SSH_Embexbot)"
    msg -bar2
    read -p " [ s | n ]: " NOTIFY   
    [[ "$NOTIFY" = "s" || "$NOTIFY" = "S" ]] && NOTIFY
@@ -315,24 +315,24 @@ clear
 df
 echo ""
 msg -bar
-echo -e "\e[1;37m	MENÚ DE OPCIONES"
-echo -e "\e[33m     MAQUINA            SISTEMA"
+echo -e "\e[1;37m	OPTION MENU"
+echo -e "\e[33m     MESIN            SISTEM"
 echo -e "\e[33m  IP : \e[31m$IP\e[0m   \e[33m OS : \e[31m$(systema)"
 echo -e "\e[1;31m \e[1;100m@conectedmx_vip   =    @conectedmx\e[0m"
 msg -bar
 #
-echo -e "\e[1;37m	INSTALACION SIN KEY"
+echo -e "\e[1;37m	INSTALASI TANPA KUNCI"
 msg -bar
-echo -e "\e[1;31m {-1-} \e[1;33m VPSMX BY KALIX1 -(CASITA)"
+echo -e "\e[1;31m {-1-} \e[1;33m VPSMX BY KALIX1"
 echo -e "\e[1;31m {-2-} \e[1;33m VPSMX BY KALIX1 -(OFICIAL)"
 echo -e "\e[1;31m {-3-} \e[1;33m NEWADM by DANKELTHAHER"
 echo -e "\e[1;31m {-4-} \e[1;33m VPSPACK By powermx"
 #echo -e "\e[1;31m {-4-} \e[1;33m ADM-GOLDEN-pro By alexmod80"
-echo -e "\e[1;31m {-5-} \e[1;33m SSHPLUS (ESPAÑOL) -(CASITA)"
+echo -e "\e[1;31m {-5-} \e[1;33m SSHPLUS"
 echo -e "\e[1;31m {-6-} \e[1;33m ADM-MX MOD BY (SIXREAPER)"
-echo -e "\e[1;31m {-7-} \e[1;37m ACTUALIZAR PAQUETES -UPDATE -(opcional)"
-echo -e "\e[1;31m {-0-} \e[1;37m SALIR"
-echo -ne "\e[1;37m SELECIONE UNA OPCION: \e[1;33m"; read casitax
+echo -e "\e[1;31m {-7-} \e[1;37m UPDATE PAKET -UPDATE -(opsional)"
+echo -e "\e[1;31m {-0-} \e[1;37m KELUAR"
+echo -ne "\e[1;37m PILIH OPSI: \e[1;33m"; read casitax
 case $casitax in
 #
 0)exit;;
@@ -344,10 +344,10 @@ case $casitax in
 5)sshplus;;
 6)reaper ;;
 7)update;;
-*)echo -e "\e[1;37m POR FAVOR SELECIONE EL NÚMERO CORRECTO"
+*)echo -e "\e[1;37m HARAP PILIH NOMOR YANG BENAR"
 rm -rf multiscript.sh
 rm -rf .bash_history
-read -p " ENTER PARA VOLVER "
+read -p " ENTER UNTUK KEMBALI "
 mix
 ;;
 #
