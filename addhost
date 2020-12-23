@@ -2,7 +2,7 @@
 echo ""
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "\033[0;32m-             PREMIUM SCRIP SSH BY EMBEX          -\033[0m"
-echo -e "\033[0;32m-               REQUESTED BY CUPCAKE_13           -\033[0m"
+echo -e "\033[0;32m-                REMODDIF BY EMBEX SSH            -\033[0m"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo ""
 if [ -d "/etc/squid/" ]; then
