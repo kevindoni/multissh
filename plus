@@ -1,6 +1,6 @@
 clear
 [[ $EUID -ne 0 ]] && {
-echo -e "\033[1;33mDisculpe, \033[1;33masuk sebagai root, jalankan sudo -i sebagai root\033[0m"
+echo -e "\033[1;33mMaaf butuh akses root penuh untuk menginstall scrip ini, \033[1;33masuk sebagai root, jalankan sudo -i sebagai root\033[0m"
 rm -rf $HOME/Plus > /dev/null 2>&1; exit 0
 }
 [[ ! -d /etc/plus ]] && mkdir /etc/plus &>/dev/null
