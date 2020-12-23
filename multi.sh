@@ -58,32 +58,6 @@ systema () {
 system=$(echo $(cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/      //'))
 echo $system|awk '{print $1, $2}'
 }
-scriptmx(){
-echo -e "\e[1;33m SCRIPT VPS-MX\n             TERPILIH"
-rm -rf multiscript.sh
-rm -rf .bash_history
-sleep 3
-wget https://raw.githubusercontent.com/casitadelterror/scripts/master/instalador/instalscript.sh &> /dev/null; chmod +x instalscript.sh* && ./instalscript.sh*
-rm -rf multiscript.sh instalscript.sh
-rm -rf .bash_history
-}
-power(){
-rm -rf multiscript.sh
-rm -rf .bash_history
-wget https://www.dropbox.com/s/s6ybopqsz3wq4fx/instalador && chmod +x instalador && ./instalador
-rm -rf multiscript.sh instalador
-rm -rf .bash_history
-}
-dankel(){
-echo -e "\e[1;33m SCRIPT dankelthaher\n             TERPILIH"
-rm -rf multiscript.sh
-rm -rf .bash_history
-sleep 3
-wget https://raw.githubusercontent.com/casitadelterror/dankeladm/master/instalador/instala.sh && chmod +x instala.sh && ./instala.sh
-rm -rf multiscript.sh instala.sh
-rm -rf .bash_history
-}
-
 sshplus(){
 echo -e "\e[1;33m SCRIPT SSHPLUS\n             TERPILIH"
 rm -rf .bash_history
@@ -92,13 +66,6 @@ sleep 3
 wget https://raw.githubusercontent.com/scriptsmx/script/master/PLUSX/Plus; chmod +x Plus; ./Plus
 rm -rf multiscript.sh
 rm -rf Plus
-}
-reaper(){
-echo -e "\e[1;33m SCRIPT MOD ADM-MX -SIXREAPER\n             TERPILIH"
-sleep 3
-rm -rf .bash_history multiscript.sh
-wget https://raw.githubusercontent.com/casitadelterror/scripts/master/gamo/instalador && chmod +x instalador && ./instalador
-rm instalador
 }
 #testiando
 kaliofc(){
@@ -141,7 +108,7 @@ inst_components () {
 funcao_idioma () {
 msg -bar2
 figlet "    -VPS MX-" | lolcat 
-echo -e "     SKRIP INI DIOPTIMALKAN UNTUK BAHASA SPANYOL"
+echo -e "     SKRIP INI TELAH DIOPTIMALKAN"
 msg -bar2
 pv="$(echo es)"
 [[ ${#id} -gt 2 ]] && id="es" || id="$pv"
@@ -243,7 +210,7 @@ wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/VPS-MX/VPS-M
 msg -bar2
 msg -bar2
 msg -ama "     [ VPS - MX - SCRIPT \033[1;97m ❌ MOD By @? ❌\033[1;33m ]"
-msg -ama "  \033[1;96m      🔰Usar Ubuntu 18 a 64 De Preferencia🔰 "
+msg -ama "  \033[1;96m      🔰Gunakan Ubuntu Atau Debian🔰 "
 msg -bar2
 [[ $1 = "" ]] && funcao_idioma || {
 [[ ${#1} -gt 2 ]] && funcao_idioma || id="$1"
@@ -323,27 +290,15 @@ msg -bar
 #
 echo -e "\e[1;37m	INSTALASI TANPA KUNCI"
 msg -bar
-echo -e "\e[1;31m {-1-} \e[1;33m VPSMX BY KALIX1"
-echo -e "\e[1;31m {-2-} \e[1;33m VPSMX BY KALIX1 -(OFICIAL)"
-echo -e "\e[1;31m {-3-} \e[1;33m NEWADM by DANKELTHAHER"
-echo -e "\e[1;31m {-4-} \e[1;33m VPSPACK By powermx"
-#echo -e "\e[1;31m {-4-} \e[1;33m ADM-GOLDEN-pro By alexmod80"
-echo -e "\e[1;31m {-5-} \e[1;33m SSHPLUS"
-echo -e "\e[1;31m {-6-} \e[1;33m ADM-MX MOD BY (SIXREAPER)"
-echo -e "\e[1;31m {-7-} \e[1;37m UPDATE PAKET -UPDATE -(opsional)"
+echo -e "\e[1;31m {-1-} \e[1;33m SSHPLUS"
+echo -e "\e[1;31m {-2-} \e[1;37m UPDATE PAKET -UPDATE -(opsional)"
 echo -e "\e[1;31m {-0-} \e[1;37m KELUAR"
 echo -ne "\e[1;37m PILIH OPSI: \e[1;33m"; read casitax
 case $casitax in
 #
 0)exit;;
-1)scriptmx;;
-2)kaliofc;;
-3)dankel;;
-4)power;;
-#4)golden ;;
-5)sshplus;;
-6)reaper ;;
-7)update;;
+1)sshplus;;
+2)update;;
 *)echo -e "\e[1;37m HARAP PILIH NOMOR YANG BENAR"
 rm -rf multiscript.sh
 rm -rf .bash_history
