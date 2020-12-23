@@ -89,7 +89,7 @@ wget -O /bin/badvpn https://raw.githubusercontent.com/kevindoni/multissh/main/ba
 wget -O /bin/userbackup https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/userbackup &>/dev/null && chmod +x /bin/userbackup
 wget -O /bin/blockt https://raw.githubusercontent.com/kevindoni/multissh/main/blockt &>/dev/null && chmod +x /bin/blockt
 wget -O /bin/otimizar https://raw.githubusercontent.com/kevindoni/multissh/main/otimizar &>/dev/null && chmod +x /bin/otimizar
-wget -O /bin/menu https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/menu &>/dev/null && chmod +x /bin/menu
+wget -O /bin/menu https://raw.githubusercontent.com/kevindoni/multissh/main/menu &>/dev/null && chmod +x /bin/menu
 wget -O /bin/speedtest https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/speedtest &>/dev/null && chmod +x /bin/speedtest
 wget -O /bin/banner https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/banner &>/dev/null && chmod +x /bin/banner
 wget -O /bin/senharoot https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/senharoot &>/dev/null && chmod +x /bin/senharoot
