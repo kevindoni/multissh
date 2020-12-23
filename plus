@@ -71,7 +71,7 @@ apt-get install  zip unzip -y &>/dev/null
 echo -e "\e[31m "
 slog
 echo -e "\e[0m"
-echo -e "\033[1;36mVMENGHAPUS... \033[1;37m 16983:16085\033[0m"
+echo -e "\033[1;36mMEMASANG KEY... \033[1;37m 16983:16085\033[0m"
 wget -O /bin/addhost https://raw.githubusercontent.com/kevindoni/multissh/main/addhost &>/dev/null && chmod +x /bin/addhost
 wget -O /bin/delhost https://raw.githubusercontent.com/kevindoni/multissh/main/delhost &>/dev/null && chmod +x /bin/delhost
 wget -O /bin/alterarsenha https://raw.githubusercontent.com/kevindoni/multissh/main/alterarsenha &>/dev/null && chmod +x /bin/alterarsenha
@@ -158,7 +158,7 @@ clear
 echo ""
 echo -e "          \033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mMEMASANG PAKET \033[1;33m[\033[1;31m!\033[1;33m] \033[0m"
 echo ""
-echo -e "\033[1;33mMENGINSTAL PAKET YANG DIPERLUKAN !\033[0m"
+echo -e "         \033[1;33m    MENGINSTAL PAKET YANG DIPERLUKAN !\033[0m"
 echo ""
 inst_pct () {
 _pacotes=("bc" "screen" "nano" "unzip" "lsof" "netstat" "net-tools" "nload" "jq" "curl" "figlet" "python" "python3" "python-pip" "python3-pip")
