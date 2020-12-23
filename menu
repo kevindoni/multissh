@@ -1,0 +1,452 @@
+fun_bar () {
+comando[0]="$1"
+comando[1]="$2"
+(
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+) > /dev/null 2>&1 &
+tput civis
+echo -ne "\033[1;33m["
+while true; do
+for((i=0; i<18; i++)); do
+echo -ne "\033[1;31m#"
+sleep 0.1s
+done
+[[ -e $HOME/fim ]] && rm $HOME/fim && break
+echo -e "\033[1;33m]"
+sleep 1s
+tput cuu1
+tput dl1
+echo -ne "\033[1;33m["
+done
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+tput cnorm
+}
+IP=$(cat /etc/IP)
+x="ok"
+menu ()
+{
+velocity () {
+aguarde () {
+comando[0]="$1"
+comando[1]="$2"
+(
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} > /dev/null 2>&1
+${comando[1]} > /dev/null 2>&1
+touch $HOME/fim
+) > /dev/null 2>&1 &
+tput civis
+echo -ne "  \033[1;33mTUNGGU \033[1;37m- \033[1;33m["
+while true; do
+for((i=0; i<18; i++)); do
+echo -ne "\033[1;31m#"
+sleep 0.1s
+done
+[[ -e $HOME/fim ]] && rm $HOME/fim && break
+echo -e "\033[1;33m]"
+sleep 1s
+tput cuu1
+tput dl1
+echo -ne "  \033[1;33mTUNGGU \033[1;37m- \033[1;33m["
+done
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+tput cnorm
+}
+fun_tst () {
+speedtest --share > speed
+}
+echo ""
+echo -e "   \033[1;32mMENGUJI KECEPATAN SERVER !\033[0m"
+echo ""
+aguarde 'fun_tst'
+echo ""
+png=$(cat speed | sed -n '5 p' |awk -F : {'print $NF'})
+down=$(cat speed | sed -n '7 p' |awk -F :  {'print $NF'})
+upl=$(cat speed | sed -n '9 p' |awk -F :  {'print $NF'})
+lnk=$(cat speed | sed -n '10 p' |awk {'print $NF'})
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[1;32mPING (LATENCIA):\033[1;37m$png"
+echo -e "\033[1;32mUNDUH:\033[1;37m$down"
+echo -e "\033[1;32mUPLOAD:\033[1;37m$upl"
+echo -e "\033[1;32mLINK: \033[1;36m$lnk\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+rm -rf $HOME/speed
+}
+function limit1 () {
+clear
+echo -e "\n\033[1;32mLIMITE AWAL... \033[0m"
+echo ""
+screen -dmS verylimiter /bin/limiter
+sleep 2s
+[[ $(grep -wc "limiter" /etc/autostart) = '0' ]] && {
+echo "ps aux |grep -v grep grep| 'limiter' && echo 'ON' || sudo screen -dmS verylimiter /bin/limiter" >> /etc/autostart
+}||{
+sed -i '/limiter/d' /etc/autostart
+echo "ps aux |grep -v grep grep| 'limiter' && echo 'ON' || sudo screen -dmS verylimiter /bin/limiter" >> /etc/autostart
+}
+echo -e "\n\033[1;32m  LIMITER ACTIVE !\033[0m"
+sleep 3
+menu
+}
+function limit2 () {
+clear
+echo -e "\033[1;32mLIMITE BERHENTI... \033[0m"
+echo ""
+fun_stplimiter () {
+sleep 1
+screen -r -S "limiter" -X quit
+screen -wipe 1>/dev/null 2>/dev/null
+[[ $(grep -wc "limiter" /etc/autostart) != '0' ]] && {
+sed -i '/limiter/d' /etc/autostart
+}
+sleep 1
+}
+fun_bar 'fun_stplimiter' 'sleep 3'
+echo -e "\n\033[1;31m LIMITER DIHENTIKAN !\033[0m"
+sleep 3
+menu
+}
+function limit_ssh () {
+[[ $(ps aux |grep -v grep| grep "limiter" |wc -l) = '0' ]] && limit1 || limit2
+}
+function autoexec () {
+if grep "menu;" /etc/profile > /dev/null; then
+clear
+echo -e "\033[1;32mNONAKTIFKAN AUTO EKSEKUSI\033[0m"
+offautmenu () {
+sed -i '/menu;/d' /etc/profile
+}
+echo ""
+fun_bar 'offautmenu'
+echo ""
+echo -e "\033[1;31mAUTO EKSEKUSI DIHENTIKAN!\033[0m"
+sleep 1.5s
+menu2
+else
+clear
+echo -e "\033[1;32mACTIVASI AUTO EKSKUSI\033[0m"
+autmenu () {
+grep -v "^menu;" /etc/profile > /tmp/tmpass && mv /tmp/tmpass /etc/profile
+echo "menu;" >> /etc/profile
+}
+echo ""
+fun_bar 'autmenu'
+echo ""
+echo -e "\033[1;32mAUTO EKSKUSI DIAKTIFKAN!\033[0m"
+sleep 1.5s
+menu2
+fi
+}
+function RAM () {
+sudo sync
+sudo sysctl -w vm.drop_caches=3 > /dev/null 2>&1
+echo "   Ram Berhasil Dibersihkan!"
+}
+function packobs () {
+echo "Mencari Paket Usang"
+dpkg -l | grep -i ^rc
+echo "Membersihkan Paket Usang"
+dpkg -l |grep -i ^rc | cut -d " " -f 3 | xargs dpkg --purge
+echo "Bersihkan Penuh"
+}
+function remove_all(){
+rm -rf bbrmod
+sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+sed -i '/fs.file-max/d' /etc/sysctl.conf
+sed -i '/net.core.rmem_max/d' /etc/sysctl.conf
+sed -i '/net.core.wmem_max/d' /etc/sysctl.conf
+sed -i '/net.core.rmem_default/d' /etc/sysctl.conf
+sed -i '/net.core.wmem_default/d' /etc/sysctl.conf
+sed -i '/net.core.netdev_max_backlog/d' /etc/sysctl.conf
+sed -i '/net.core.somaxconn/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_syncookies/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_tw_reuse/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_tw_recycle/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_fin_timeout/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_keepalive_time/d' /etc/sysctl.conf
+sed -i '/net.ipv4.ip_local_port_range/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_max_syn_backlog/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_max_tw_buckets/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_rmem/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_wmem/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_mtu_probing/d' /etc/sysctl.conf
+sed -i '/net.ipv4.ip_forward/d' /etc/sysctl.conf
+sed -i '/fs.inotify.max_user_instances/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_syncookies/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_fin_timeout/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_tw_reuse/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_max_syn_backlog/d' /etc/sysctl.conf
+sed -i '/net.ipv4.ip_local_port_range/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_max_tw_buckets/d' /etc/sysctl.conf
+sed -i '/net.ipv4.route.gc_timeout/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_synack_retries/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_syn_retries/d' /etc/sysctl.conf
+sed -i '/net.core.somaxconn/d' /etc/sysctl.conf
+sed -i '/net.core.netdev_max_backlog/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_timestamps/d' /etc/sysctl.conf
+sed -i '/net.ipv4.tcp_max_orphans/d' /etc/sysctl.conf
+if [[ -e /appex/bin/lotServer.sh ]]; then
+bash <(wget --no-check-certificate -qO- https://github.com/MoeClub/lotServer/raw/master/Install.sh) uninstall
+fi
+clear
+echo -e "Akselerasi Dicopot."
+sleep 1s
+}
+function startbbr(){
+remove_all
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+echo -e "BBR berhasil dimulai!"
+echo ""
+}
+while true $x != "ok"
+do
+unset LIMITEX
+LIMITEX=$(ps x|grep -v grep|grep "limiter")
+[[ ! $LIMITEX ]] && LIMITEX=$(echo -e "\033[1;32m◉ ") || LIMITEX=$(echo -e "\033[1;31m○ ")
+[[ -e /etc/Plus-torrent ]] && stsf=$(echo -e "\033[1;32m◉ ") || stsf=$(echo -e "\033[1;31m○ ")
+[[ -e /etc/sysctl.conf ]] && bbr=$(echo -e "\033[1;32m◉ ") || bbr=$(echo -e "\033[1;31m○ ")
+stsbot=$(ps x | grep "bot"|grep -v grep > /dev/null && echo -e "\033[1;32m◉ " || echo -e "\033[1;31m○ ")
+autm=$(grep "menu;" /etc/profile > /dev/null && echo -e "\033[1;32m◉ " || echo -e "\033[1;31m○ ")
+stsu=$(ps x | grep "udpvpn"|grep -v grep > /dev/null && echo -e "\033[1;32m◉ " || echo -e "\033[1;31m○ ")
+if [[ "$(grep -c "Ubuntu" /etc/issue.net)" = "1" ]]; then
+system=$(cut -d' ' -f1 /etc/issue.net)
+system+=$(echo ' ')
+system+=$(cut -d' ' -f2 /etc/issue.net |awk -F "." '{print $1}')
+elif [[ "$(grep -c "Debian" /etc/issue.net)" = "1" ]]; then
+system=$(cut -d' ' -f1 /etc/issue.net)
+system+=$(echo ' ')
+system+=$(cut -d' ' -f3 /etc/issue.net)
+else
+system=$(cut -d' ' -f1 /etc/issue.net)
+fi
+_ons=$(ps -x | grep sshd | grep -v root | grep priv | wc -l)
+[[ "$(cat /etc/SSHPlus/Exp)" != "" ]] && _expuser=$(cat /etc/SSHPlus/Exp) || _expuser="0"
+[[ -e /etc/openvpn/openvpn-status.log ]] && _onop=$(grep -c "10.8.0" /etc/openvpn/openvpn-status.log) || _onop="0"
+[[ -e /etc/default/dropbear ]] && _drp=$(ps aux | grep dropbear | grep -v grep | wc -l) _ondrp=$(($_drp - 1)) || _ondrp="0"
+_onli=$(($_ons + $_onop + $_ondrp))
+_ram=$(printf ' %-9s' "$(free -h | grep -i mem | awk {'print $2'})")
+_usor=$(printf '%-8s' "$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')")
+_usop=$(printf '%-1s' "$(top -bn1 | awk '/Cpu/ { cpu = "" 100 - $8 "%" }; END { print cpu }')")
+_core=$(printf '%-1s' "$(grep -c cpu[0-9] /proc/stat)")
+_system=$(printf '%-14s' "$system")
+_hora=$(printf '%(%H:%M:%S)T')
+_onlin=$(printf '%-5s' "$_onli")
+_userexp=$(printf '%-5s' "$_expuser")
+_tuser=$(awk -F: '$3>=1000 {print $1}' /etc/passwd | grep -v nobody | wc -l)
+clear
+apache="$(grep '81' /etc/apache2/ports.conf | cut -d' ' -f2 | grep -v 'apache2' | xargs)" || apache="$(grep '80' /etc/apache2/ports.conf | cut -d' ' -f2 | grep -v 'apache2' | xargs)"
+ngi="$(grep '81' /etc/nginx/nginx.conf &>/dev/null| cut -d' ' -f2 | grep -v 'nginx' | xargs)" || ngi="$(grep '80' /etc/nginx/nginx.conf &>/dev/null| cut -d' ' -f2 | grep -v 'nginx' | xargs)"
+ssh="$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)"
+sslh="$(netstat -nplt | grep 'sslh' | awk {'print $4'} | cut -d: -f2 | xargs)"
+ovpn="$(netstat -nplt | grep 'openvpn' | awk {'print $4'} | cut -d: -f2 | xargs)"
+proxy="$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)"
+ssl="$(netstat -nplt | grep 'stunnel' | awk {'print $4'} | cut -d: -f2 | xargs)"
+dropbear="$(netstat -nplt | grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
+squid="$(netstat -nplt | grep 'squid' | awk -F ":" {'print $4'} | xargs)"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\E[41;1;37m               ⇱ SSHPLUS MANAGER ⇲                \E[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[1;32mSISTEM            MEMORI RAM      PROSESOR "
+echo -e "\033[1;31mOS: \033[1;37m$_system \033[1;31mTotal:\033[1;37m$_ram \033[1;31mWaktu: \033[1;37m$_hora\033[0m"
+echo -e "\033[1;31mIP: \033[1;37m$IP   \033[1;31mDigunakan: \033[1;37m$_usor \033[1;31mCpu: \033[1;37m$_usop\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\e[1;32mSSH: \033[1;37m$ssh \e[1;31m| \e[1;32mSSLH: \e[1;37m$sslh \e[1;31m| \e[1;32mSSL: \e[1;37m$ssl"
+echo -e "\033[1;33mPROXY SOCKS: \033[1;37m$proxy\e[1;31m | \e[1;33mOPENVPN: \e[1;37m$ovpn \e[1;31m| \e[1;33mDROPBEAR: \E[1;37m$dropbear\e[0m"
+echo -e "\033[1;33mPROXY SQUID: \033[1;37m$squid \e[1;31m| \e[1;33mAPACHE2: \e[1;37m$apache \e[1;31m| \e[1;33mNGINX: \e[1;31m$ngi"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[1;32mONLINE:\033[1;37m $_onlin   \033[1;31mEXPIRADOS: \033[1;37m$_userexp \033[1;33mAKUN: \033[1;37m$_tuser\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo ""
+echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mBUAT PENGGUNA \033[1;31m             [\033[1;36m18\033[1;31m] \033[1;37m• \033[1;33mSPEEDTEST \033[1;31m
+[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mBUAT PENGUJIAN PENGGUNA \033[1;31m       [\033[1;36m19\033[1;31m] \033[1;37m• \033[1;33mBANNER SSH \033[1;31m
+[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;31m\e[1;100mHAPUS PENGGUNAO\e[0m\033[1;31m           [\033[1;36m20\033[1;31m] \033[1;37m• \033[1;33mTRAFIK \033[1;31m
+[\033[1;36m4\033[1;31m] \033[1;37m• \033[1;33mPENGGUNA ONLINE\033[1;31m          [\033[1;36m21\033[1;31m] \033[1;37m• \033[1;33mOPTIMIMALKAN \033[1;31m
+[\033[1;36m5\033[1;31m] \033[1;37m• \033[1;33mGANTI TANGGAL \033[1;31m             [\033[1;36m22\033[1;31m] \033[1;37m• \033[1;33mBLOCK TORRENT $stsf\033[1;31m
+[\033[1;36m6\033[1;31m] \033[1;37m• \033[1;33mBACKUP \033[1;31m                    [\033[1;36m23\033[1;31m] \033[1;37m• \033[1;33mPEMBATASAN $LIMITEX\033[1;31m
+[\033[1;36m7\033[1;31m] \033[1;37m• \033[1;33mUBAH LIMITE \033[1;31m            [\033[1;36m24\033[1;31m] \033[1;37m• \033[1;33mBOT TELEGRAM $stsbot\033[1;31m
+[\033[1;36m8\033[1;31m] \033[1;37m• \033[1;33mGANTI KATA SANDI \033[1;31m        [\033[1;36m25\033[1;31m] \033[1;37m• \033[1;33mBADVPN $stsu\033[1;31m
+[\033[1;36m9\033[1;31m] \033[1;37m• \033[1;31m\e[1;100mHAPUS EXPIR\e[0m \033[1;31m        [\033[1;36m26\033[1;31m] \033[1;37m• \033[1;33mINFORMASI VPS \033[1;31m
+[\033[1;36m10\033[1;31m] \033[1;37m• \033[1;33mTAMPILKAN PENGGUNA \033[1;31m         [\033[1;36m27\033[1;31m] \033[1;37m• \033[1;33mBERSIHKAN RAM \033[1;31m
+[\033[1;36m11\033[1;31m] \033[1;37m• \033[1;33mBERSIH OBSOLETE PQT  \033[1;31m   [\033[1;36m28\033[1;31m] \033[1;37m• \033[1;33mMEMPERCEPAT VPS (BBR) $bbr\033[1;31m
+[\033[1;36m12\033[1;31m] \033[1;37m• \033[1;31m\e[1;100mINSTALASI PELABUHAN\e[0m\033[1;31m    [\033[1;36m29\033[1;31m] \033[1;37m• \033[1;33mUBAH PASWD ROOT \033[1;31m
+[\033[1;36m13\033[1;31m] \033[1;37m• \033[1;33mTAMBAHKAN HOST \033[1;31m           [\033[1;36m30\033[1;31m] \033[1;37m• \033[1;33mAUTO EKSEKUSI $autm \033[1;31m
+[\033[1;36m14\033[1;31m] \033[1;37m• \033[1;33mHAPUS HOST \033[1;31m            [\033[1;36m31\033[1;31m] \033[1;37m• \033[1;33mPERARUI SCRIPT \033[1;31m
+[\033[1;36m15\033[1;31m] \033[1;37m• \033[1;33mMULAI ULANG SISTEM \033[1;31m        [\033[1;36m32\033[1;31m] \033[1;37m• \033[1;31m\e[1;100mDISINSTALAR SCRIPT\e[0m \033[1;31m
+[\033[1;36m16\033[1;31m] \033[1;37m• \033[1;31m\e[1;100mBLOKIR PENGGUNA\e[0m \033[1;31m        [\033[1;36m33\033[1;31m] \033[1;37m• \033[1;33mZONA-TIME \033[1;32m>\033[1;33m>\033[1;31m
+[\033[1;36m17\033[1;31m] \033[1;37m• \033[1;33mMULAI ULANG SERVICE \033[1;31m      [\033[1;36m 0 \033[1;31m] \033[1;37m• \033[1;43mKELUAR\e[0m \033[1;32m<\033[1;33m<\033[1;31m"
+echo ""
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo ""
+echo -ne "\033[1;32m PILIH OPSI\033[1;33m?\033[1;31m?\033[1;37m : "; read x
+case "$x" in
+1 | 01)
+clear
+criarusuario
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+2 | 02)
+clear
+criarteste
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+3 | 03)
+clear
+remover
+sleep 3s
+;;
+4 | 04)
+clear
+sshmonitor
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+5 | 05)
+clear
+mudardata
+sleep 3s
+;;
+6)
+userbackup
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+7)
+clear
+alterarlimite
+sleep 3s
+;;
+8)
+clear
+alterarsenha
+sleep 3s
+;;
+9)
+clear
+expcleaner
+echo ""
+sleep 3s
+;;
+10)
+clear
+infousers
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+11)
+packobs
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+12)
+conexao
+exit;
+;;
+13)
+clear
+addhost
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENÚ!\033[0m"; read
+menu
+;;
+14)
+clear
+delhost
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENÚ!\033[0m"; read
+menu
+;;
+15)
+clear
+reiniciarsistema
+;;
+16)
+bloqueo.sh
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENÚ!\033[0m"; read
+;;
+17)
+clear
+reiniciarservicos
+sleep 3s
+;;
+18)
+clear
+velocity
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+19)
+clear
+banner
+sleep 3s
+;;
+20)
+clear
+echo -e "\033[1;32mUNTUK BERHENTI CLICK CTRL + C\033[1;36m"
+sleep 4
+nload
+;;
+21)
+clear
+otimizar
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+22)
+blockt
+;;
+23)
+limitest
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENÚ!\033[0m"; read
+;;
+24)
+clear
+botssh
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENÚ!\033[0m"; read
+;;
+25)
+clear
+badvpn
+exit;
+;;
+26)
+clear
+detalhes
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENÚ!\033[0m"; read
+;;
+27)
+RAM
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENÚ!\033[0m"; read
+;;
+28)
+startbbr
+echo -ne "\n\033[1;31mENTER \033[1;33muntuk kembali ke \033[1;32mMENU!\033[0m"; read
+;;
+29)
+clear
+senharoot
+sleep 3s
+;;
+30)
+autoexec
+;;
+31)
+attscript
+;;
+32)
+clear
+delscript
+;;
+33)
+hora.sh
+echo -ne "\n\033[1;31mENTER \033[1;33mpara regresar al \033[1;32mMENÚ!\033[0m"; read
+;;
+0)
+echo -e "\033[1;31mSaliendo...\033[0m"
+clear
+exit 0;
+;;
+*)
+echo -e "\n\033[1;31mOpcion invalida !\033[0m"
+sleep 2s
+esac
+done
+}
+menu
