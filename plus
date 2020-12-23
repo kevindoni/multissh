@@ -72,23 +72,23 @@ echo -e "\e[31m "
 slog
 echo -e "\e[0m"
 echo -e "\033[1;36mVMENGHAPUS... \033[1;37m 16983:16085\033[0m"
-wget -O /bin/addhost https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/addhost &>/dev/null && chmod +x /bin/addhost
-wget -O /bin/delhost https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/delhost &>/dev/null && chmod +x /bin/delhost
-wget -O /bin/alterarsenha https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/alterarsenha &>/dev/null && chmod +x /bin/alterarsenha
-wget -O /bin/criarusuario https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/criarusuario &>/dev/null && chmod +x /bin/criarusuario
-wget -O /bin/expcleaner https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/expcleaner &>/dev/null && chmod +x /bin/expcleaner
-wget -O /bin/mudardata https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/mudardata &>/dev/null && chmod +x /bin/mudardata
-wget -O /bin/remover https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/remover &>/dev/null && chmod +x /bin/remover
-wget -O /bin/criarteste https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/criarteste &>/dev/null && chmod +x /bin/criarteste
-wget -O /bin/verifbot https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/verifbot &>/dev/null && chmod +x /bin/verifbot
-wget -O /bin/droplimiter https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/droplimiter &>/dev/null && chmod +x /bin/droplimiter
-wget -O /bin/alterarlimite https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/alterarlimite &>/dev/null && chmod +x /bin/alterarlimite
-wget -O /bin/ajuda https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/ajuda &>/dev/null && chmod +x /bin/ajuda
-wget -O /bin/sshmonitor https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/sshmonitor &>/dev/null && chmod +x /bin/sshmonitor
-wget -O /bin/badvpn https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/badvpn &>/dev/null && chmod +x /bin/badvpn
+wget -O /bin/addhost https://raw.githubusercontent.com/kevindoni/multissh/main/addhost &>/dev/null && chmod +x /bin/addhost
+wget -O /bin/delhost https://raw.githubusercontent.com/kevindoni/multissh/main/delhost &>/dev/null && chmod +x /bin/delhost
+wget -O /bin/alterarsenha https://raw.githubusercontent.com/kevindoni/multissh/main/alterarsenha &>/dev/null && chmod +x /bin/alterarsenha
+wget -O /bin/criarusuario https://raw.githubusercontent.com/kevindoni/multissh/main/criarusuario &>/dev/null && chmod +x /bin/criarusuario
+wget -O /bin/expcleaner https://raw.githubusercontent.com/kevindoni/multissh/main/expcleaner &>/dev/null && chmod +x /bin/expcleaner
+wget -O /bin/mudardata https://raw.githubusercontent.com/kevindoni/multissh/main/mudardata &>/dev/null && chmod +x /bin/mudardata
+wget -O /bin/remover https://raw.githubusercontent.com/kevindoni/multissh/main/remover &>/dev/null && chmod +x /bin/remover
+wget -O /bin/criarteste https://raw.githubusercontent.com/kevindoni/multissh/main/criarteste &>/dev/null && chmod +x /bin/criarteste
+wget -O /bin/verifbot https://raw.githubusercontent.com/kevindoni/multissh/main/verifbot &>/dev/null && chmod +x /bin/verifbot
+wget -O /bin/droplimiter https://raw.githubusercontent.com/kevindoni/multissh/main/droplimiter &>/dev/null && chmod +x /bin/droplimiter
+wget -O /bin/alterarlimite https://raw.githubusercontent.com/kevindoni/multissh/main/alterarlimite &>/dev/null && chmod +x /bin/alterarlimite
+wget -O /bin/ajuda https://raw.githubusercontent.com/kevindoni/multissh/main/ajuda &>/dev/null && chmod +x /bin/ajuda
+wget -O /bin/sshmonitor https://raw.githubusercontent.com/kevindoni/multissh/main/sshmonitor &>/dev/null && chmod +x /bin/sshmonitor
+wget -O /bin/badvpn https://raw.githubusercontent.com/kevindoni/multissh/main/badvpn &>/dev/null && chmod +x /bin/badvpn
 wget -O /bin/userbackup https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/userbackup &>/dev/null && chmod +x /bin/userbackup
-wget -O /bin/blockt https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/blockt &>/dev/null && chmod +x /bin/blockt
-wget -O /bin/otimizar https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/otimizar &>/dev/null && chmod +x /bin/otimizar
+wget -O /bin/blockt https://raw.githubusercontent.com/kevindoni/multissh/main/blockt &>/dev/null && chmod +x /bin/blockt
+wget -O /bin/otimizar https://raw.githubusercontent.com/kevindoni/multissh/main/otimizar &>/dev/null && chmod +x /bin/otimizar
 wget -O /bin/menu https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/menu &>/dev/null && chmod +x /bin/menu
 wget -O /bin/speedtest https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/speedtest &>/dev/null && chmod +x /bin/speedtest
 wget -O /bin/banner https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/banner &>/dev/null && chmod +x /bin/banner
@@ -99,8 +99,8 @@ wget -O /bin/attscript https://raw.githubusercontent.com/casitadelterror/ssh/mas
 wget -O /bin/conexao https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/conexao &>/dev/null && chmod +x /bin/conexao
 wget -O /bin/delscript https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/delscript &>/dev/null && chmod +x /bin/delscript
 wget -O /bin/detalhes https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/detalhes &>/dev/null && chmod +x /bin/detalhes
-wget -O /bin/botssh https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/botssh &>/dev/null && chmod +x /bin/botssh
-wget -O /bin/infousers https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/infousers &>/dev/null && chmod +x /bin/infousers
+wget -O /bin/botssh https://raw.githubusercontent.com/kevindoni/multissh/main/botssh &>/dev/null && chmod +x /bin/botssh
+wget -O /bin/infousers https://raw.githubusercontent.com/kevindoni/multissh/main/infousers &>/dev/null && chmod +x /bin/infousers
 wget -O /bin/verifatt https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/verifatt &>/dev/null && chmod +x /bin/verifatt
 wget -O /bin/limitest https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/limitest &>/dev/null && chmod +x /bin/limitest
 wget -O /etc/SSHPlus/limite https://raw.githubusercontent.com/casitadelterror/ssh/master/Modulos/español/limite &>/dev/null && chmod +x /etc/SSHPlus/limite
